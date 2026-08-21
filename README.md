@@ -19,8 +19,18 @@ GraftLink is a lightweight, high-performance modloader for **Minicraft+ Revived*
 ### Prerequisites
 * Java JDK 17 or higher
 
-### Installation
-```bash
+### Installation & Run Instructions
+
 1. Clone this repository:
    git clone https://github.com//GraftLink.git
    cd GraftLink
+
+2. Open "GraftLink/libs/
+   Download Minicraft-plus-2.2.4.jar from https://github.com/MinicraftPlus/minicraft-plus-revived/releases/tag/v2.2.4 to this folder.
+
+4. cd GraftLink
+   .\gradlew run
+
+---
+
+Enjoy GraftLink, and feel free to make additions and changes!
