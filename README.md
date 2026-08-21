@@ -20,6 +20,7 @@ GraftLink is a lightweight, high-performance modloader for **Minicraft+ Revived*
 * Java JDK 17 or higher
 
 ### Installation
+```bash
 1. Clone this repository:
    git clone https://github.com//GraftLink.git
    cd GraftLink
