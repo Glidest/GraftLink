@@ -1,0 +1,8 @@
+{
+  "id": "graftlink",
+  "name": "GraftLink",
+  "version": "26.8.8",
+  "description": "Breathing life into Minicraft, one Graft at a time.",
+  "slogan": "Breathing life into Minicraft, one Graft at a time.",
+  "loaderClass": "com.graftlink.GraftLoader"
+}

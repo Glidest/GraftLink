@@ -1,0 +1,5 @@
+[20:54:26] [main/INFO]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=file:/C:/Users/baker/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar Service=LaunchWrapper Env=UNKNOWN
+[20:54:26] [main/INFO]: FML platform manager could not load class cpw.mods.fml.relauncher.CoreModManager. Proceeding without FML support.
+[20:54:26] [main/ERROR]: MixinBootstrap.doInit() called during a tweak constructor!
+[20:54:26] [main/INFO]: FML platform manager could not load class cpw.mods.fml.relauncher.CoreModManager. Proceeding without FML support.
+[20:54:26] [main/INFO]: Compatibility level set to JAVA_8

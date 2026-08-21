@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.graftlink.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "GameTickMixin",
+    "RecipesMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
