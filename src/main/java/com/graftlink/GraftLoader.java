@@ -34,22 +34,27 @@ public class GraftLoader extends LaunchClassLoader {
 
     public GraftLoader(ClassLoader parent) {
         super(getSystemURLs(parent));
+
         Launch.classLoader = this;
         if (Launch.blackboard == null) {
             Launch.blackboard = new HashMap<>();
         }
+
         // Exclude GraftLink API package so all Grafts share the exact same interface instance
         this.addClassLoaderExclusion("com.graftlink.api.");
+
         LOGGER.info("GraftLoader initialized with parent: " + (parent != null ? parent.getClass().getName() : "null"));
     }
 
     private static URL[] getSystemURLs(ClassLoader parent) {
         List<URL> urls = new ArrayList<>();
+
         if (parent instanceof URLClassLoader) {
             for (URL url : ((URLClassLoader) parent).getURLs()) {
                 urls.add(url);
             }
         }
+
         String classPath = System.getProperty("java.class.path");
         if (classPath != null) {
             for (String path : classPath.split(File.pathSeparator)) {
@@ -63,6 +68,7 @@ public class GraftLoader extends LaunchClassLoader {
                 }
             }
         }
+
         return urls.toArray(new URL[0]);
     }
 
@@ -101,6 +107,7 @@ public class GraftLoader extends LaunchClassLoader {
                 LOGGER.warn("Error reading class bytes for " + name + " from " + jarFile.getName() + ": " + e.getMessage());
             }
         }
+
         return super.getClassBytes(name);
     }
 
@@ -124,12 +131,15 @@ public class GraftLoader extends LaunchClassLoader {
             graftsDir.mkdirs();
             return;
         }
+
         File[] files = graftsDir.listFiles((dir, name) -> name.endsWith(".jar"));
         if (files == null) return;
+
         for (File file : files) {
             addFile(file);
             graftFiles.add(file.getAbsoluteFile());
             LOGGER.info("[GraftLink] Found and loaded Graft jar: " + file.getName());
+
             try (JarFile jarFile = new JarFile(file)) {
                 var entries = jarFile.entries();
                 while (entries.hasMoreElements()) {
@@ -149,6 +159,7 @@ public class GraftLoader extends LaunchClassLoader {
     public void initGrafts() {
         for (File jarFile : graftFiles) {
             boolean initializedAny = false;
+
             // 1. Try reading service provider file defined by SERVICE_PATH
             try (JarFile jar = new JarFile(jarFile)) {
                 JarEntry entry = jar.getJarEntry(SERVICE_PATH);
@@ -178,6 +189,7 @@ public class GraftLoader extends LaunchClassLoader {
             } catch (Exception e) {
                 LOGGER.warn("[GraftLink] Error reading service provider from " + jarFile.getName() + ": " + e.getMessage());
             }
+
             // 2. Fallback auto-discovery if service entry was missing
             if (!initializedAny) {
                 try (JarFile jar = new JarFile(jarFile)) {
@@ -211,6 +223,7 @@ public class GraftLoader extends LaunchClassLoader {
                     LOGGER.warn("Error during auto-discovery in " + jarFile.getName() + ": " + e.getMessage());
                 }
             }
+
             if (!initializedAny) {
                 LOGGER.warn("[GraftLink] Warning: No class implementing 'Graft' was found in " + jarFile.getName());
             }
